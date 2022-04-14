@@ -36,6 +36,11 @@
     height: 100%;
 }
 
+.ms-error {
+    color: red;
+    margin-top: 10px;
+}
+
 .main-content .logo {
     width: 40%;
     height: 100%;

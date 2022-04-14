@@ -1,3 +1,22 @@
+<?php
+
+    require_once "conexion.php";
+
+    $nombre = $apellido = $nombreUsuario = $password = $confirmPassword = $fechaNacimiento = $genero = "";
+
+    $nombre_err = $apellido_err = $nombreUsuario_err = $password_err = $confirmPassword_err = $fechaNacimiento_err = $genero_err = "";
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        if(empty(trim($_POST["name"]))){
+            $nombre_err = "Por favor, ingrese su nombre";
+        }
+    }
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +31,7 @@
     <div class="all">
         <div class="main-content">
             <div class="form">
-                <form id="formulario" method="post" action="">
+                <form id="formulario" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                     <fieldset>
                         <div class="opcion1">
                             <h3>Crear una cuenta</h3>
@@ -20,18 +39,19 @@
                         <div class="opcion2">
                             <div class="row">
                                 <div class="col">
-                                  <input id="name" pattern="/^[A-Za-z- ,◆{3,20}?=.*\d)/
-                                  " type="text" class="form-control" name="name" placeholder="Primer nombre" aria-label="First name">
+                                  <input id="name" title="No se permiten numeros" pattern="[a-zA-Z ]{2,15}" type="text" class="form-control" name="name" placeholder="Primer nombre" aria-label="First name">
+                                  <span class="ms-error"><?php echo $nombre_err;?></span>
                                 </div>
                                 <div class="col">
-                                  <input id="apellidos" pattern="/^[A-Za-z- ,◆{3,20}?=.*\d)/
-                                  " type="text" class="form-control" name="apellido" placeholder="Apellidos" aria-label="Last name">
+                                  <input id="apellidos" title="No se permiten numeros" pattern="[a-zA-Z ]{2,15}" type="text" class="form-control" name="apellido" placeholder="Apellidos" aria-label="Last name">
+                                  <span class="ms-error"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row opcion3">
                             <div class="col">
                                 <input type="email" class="form-control" name="nombre-usuario" id="user-name" placeholder="Nombre de usuario">
+                                <span class="ms-error"></span>
                             </div>
                         </div>
                         <div class="opcion4">
@@ -39,9 +59,11 @@
                                 <div class="row">
                                     <div class="col">
                                       <input type="password" minlength="8" id="clave" name="password" class="form-control" placeholder="Contraseña" aria-label="First name">
+                                      <span class="ms-error"></span>
                                     </div>
                                     <div class="col">
                                       <input type="password" minlength="8" id="confirmClave" name="confirm-password" class="form-control" placeholder="Confirmar contraseña" aria-label="Last name">
+                                      <span class="ms-error"></span>
                                     </div>
                                   </div>
                             </div>
@@ -59,6 +81,7 @@
                             <div class="row">
                                 <div class="col">
                                   <input type="date" id="fecha" min="1960-12-31" max="2004-12-31" name="fecha" class="form-control" placeholder="Fecha de nacimiento">
+                                  <span class="ms-error"></span>
                                 </div>
                               </div>
                         </div>
@@ -70,6 +93,7 @@
                                   <option value="Femenino">Femenino</option>
                                   <option value="Otro">Otro</option>
                                 </select>
+                                <span class="ms-error"></span>
                             </div>
                         </div>
                         <div class="row opcion7">

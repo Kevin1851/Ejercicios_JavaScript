@@ -10,6 +10,7 @@ function validarFormulario(){
             alert("Ingrese su nombre");
             return false;
         }
+        
     let inputApellidos = document.getElementById("apellidos").value.trim();
         if(inputApellidos == ""){
             document.getElementById("apellidos").focus();
@@ -66,9 +67,6 @@ function validarFormulario(){
         return todoCorrecto;
 }
 
-function validarNombre(){
-    
-}
 
 function mostrarContraseña(){
     var clave = document.getElementById("clave")
